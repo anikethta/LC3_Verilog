@@ -1,0 +1,6 @@
+/microcode/create_microcode.py
+/run/run.sh
+/run/obj2hex.py
+/run/a.out
+/src/dump.vcd
+/src/tb.vvp
