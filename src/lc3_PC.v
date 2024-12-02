@@ -1,12 +1,12 @@
 module lc3_PC ( input [15:0] ADDR, 
                 inout [15:0] main_bus, 
+                output reg [15:0] PC,
                 input GatePC, 
                 input LDPC, 
                 input [1:0] PCMUX, 
                 input clk, 
                 input rst );
-
-    reg [15:0] PC;
+                
     reg [15:0] PCMUX_out;
 
     always @(*) begin

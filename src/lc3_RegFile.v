@@ -8,43 +8,46 @@ module lc3_RegFile (input [15:0] IR,
                     output reg [15:0] SR1OUT, 
                     output [15:0] SR2OUT);
 
-    reg [2:0] DRMUX_out;
-    reg [15:0] R [7:0];
+    reg [2:0] DRMUX_mux;
+    reg [15:0] regfile [7:0];
 
     always @(*) begin
         case (DRMUX)
-            2'b00 : DRMUX_out <= {IR[11:9]};
-            2'b01 : DRMUX_out <= 3'b111;
-            2'b10 : DRMUX_out <= 3'b110;
-            default : DRMUX_out <= {IR[11:9]}; // Shouldn't happen?
+            2'b00 : DRMUX_mux <= {IR[11:9]};
+            2'b01 : DRMUX_mux <= 3'b111;
+            2'b10 : DRMUX_mux <= 3'b110;
+            default : DRMUX_mux <= {IR[11:9]}; // Happens on rst
         endcase
     end
 
     always @(*) begin
         case (SR1MUX)
-            2'b00 : SR1OUT <= R[IR[11:9]];
-            2'b01 : SR1OUT <= R[IR[8:6]];
-            2'b10 : SR1OUT <= R[3'b110];
-            default : SR1OUT <= R[IR[11:9]]; // Shouldn't happen?
+            2'b00 : SR1OUT <= regfile[IR[11:9]];
+            2'b01 : SR1OUT <= regfile[IR[8:6]];
+            2'b10 : SR1OUT <= regfile[3'b110];
+            default : SR1OUT <= regfile[IR[11:9]]; // Happens on rst
         endcase
     end
 
-    assign SR2OUT = R[IR[2:0]];
+    assign SR2OUT = regfile[IR[2:0]];
 
     always @(posedge clk) begin
         if (rst == 1'b0) begin
-            R[0] = 16'h0000;
-            R[1] = 16'h0000;
-            R[2] = 16'h0000;
-            R[3] = 16'h0000;
-            R[4] = 16'h0000;
-            R[5] = 16'h0000;
-            R[6] = 16'h0000;
+            regfile[0] = 16'h0000;
+            regfile[1] = 16'h0000;
+            regfile[2] = 16'h0000;
+            regfile[3] = 16'h0000;
+            regfile[4] = 16'h0000;
+            regfile[5] = 16'h0000;
+            regfile[6] = 16'h0000;
+            regfile[7] = 16'h0000;
         end
 
         else if (LDREG == 1'b1) begin
-            R[DRMUX_out] = main_bus;
+            regfile[DRMUX_mux] = main_bus;
         end
+
+        $display("reg[1]: %x", regfile[1]);
     end
 
 endmodule

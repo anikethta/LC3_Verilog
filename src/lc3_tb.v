@@ -9,17 +9,16 @@ module lc3_tb();
 
     always begin
         #5;
-        clk <= 0;
-        #5;
-        clk <= 1;
+        clk <= ~clk;
     end
 
     initial begin
         $dumpvars(0, DUT);
+        clk <= 1'b0;
         rst <= 1'b0;
-        #20;
+        #10;
         rst <= 1'b1;
-        #1000;
+        #5000;
         $finish();
     end
 

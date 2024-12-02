@@ -12,8 +12,6 @@ module lc3_IR (input [15:0] main_bus,
         else if (LDIR == 1'b1) begin
             IR_out <= main_bus;
         end
-
-        $display("main bus current %b", main_bus);
     end
 
 endmodule

@@ -15,7 +15,7 @@ module lc3_ControlFSM ( input [15:0] IR,
 // Implementing Next-State Transitions
     always @(posedge clk) begin
         if (rst == 1'b0) begin
-            state <= 6'b010010;
+            state <= 18;
         end
         else begin
             case (state) 
