@@ -13,5 +13,4 @@ module lc3_IR (input [15:0] main_bus,
             IR_out <= main_bus;
         end
     end
-
 endmodule

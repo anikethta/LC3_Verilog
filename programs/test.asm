@@ -1,7 +1,7 @@
 .ORIG x3000
 
-AND R1, R1, #0;
-ADD R1, R1, #8;
+AND R2, R2, #0;
+ADD R2, R2, #8;
 
 HALT
 .END

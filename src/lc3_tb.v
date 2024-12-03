@@ -18,8 +18,6 @@ module lc3_tb();
         rst <= 1'b0;
         #10;
         rst <= 1'b1;
-        #5000;
-        $finish();
     end
 
 endmodule

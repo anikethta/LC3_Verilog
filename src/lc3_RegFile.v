@@ -46,8 +46,11 @@ module lc3_RegFile (input [15:0] IR,
         else if (LDREG == 1'b1) begin
             regfile[DRMUX_mux] = main_bus;
         end
-
-        $display("reg[1]: %x", regfile[1]);
     end
+    /** Testing test.asm
+    always @(regfile[2]) begin
+        $display("%x", regfile[2]);
+    end
+    **/
 
 endmodule

@@ -27,5 +27,5 @@ module lc3_mreg(input GateMDR,
     end
 
     assign main_bus = (GateMDR == 1'b1) ? current_ram_val : {16{1'bz}};
-
+    
 endmodule

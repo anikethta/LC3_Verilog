@@ -54,5 +54,4 @@ module lc3_Datapath (input clk, input rst);
     lc3_RegFile lc3_RegFile_m (IR, LDREG, clk, rst, DRMUX, SR1MUX, main_bus, SR1OUT, SR2OUT);
     lc3_cc lc3_cc_m(clk, rst, LDBEN, IR, main_bus, LDCC, BEN);
     lc3_ControlFSM lc3_ControlFSM_m (IR, R, clk, rst, BEN, main_bus, control_signals);
-
 endmodule
