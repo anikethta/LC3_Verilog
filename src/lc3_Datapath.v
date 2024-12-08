@@ -39,11 +39,18 @@ module lc3_Datapath (input clk, input rst);
     wire [1:0]    ADDR2MUX;
     wire [1:0]    ALUK;
     wire [25:0]   control_signals;
+    wire [15:0]   PSR;
+    wire          INT;
+    wire          ACV;
 
     assign {LDBEN, LDCC, LDIR, LD_MAR, LD_MDR, LDPC, 
             LDREG, GateALU, GateMARMUX, GateMDR, GatePC, 
             MARMUX, MIO_EN, PCMUX, RW, SR1MUX, DRMUX, 
             ADDR1MUX, ADDR2MUX, ALUK} = control_signals;
+    
+    assign PSR[15] = 1'b1; // running in user mode
+    assign INT = 1'b0;
+    assign ACV = 1'b0;
 
     lc3_ADDR lc3_ADDR_m (IR, ADDR2MUX, SR1OUT, ADDR1MUX, PC, addr_sel_out);
     lc3_ALU lc3_ALU_m (IR, SR1OUT, SR2OUT, ALUK, GateALU, main_bus);
@@ -52,6 +59,6 @@ module lc3_Datapath (input clk, input rst);
     lc3_mreg lc3_mreg_m (GateMDR, LD_MDR, MIO_EN, LD_MAR, RW, clk, R, main_bus);
     lc3_PC lc3_PC_m (addr_sel_out, main_bus, PC, GatePC, LDPC, PCMUX, clk, rst);
     lc3_RegFile lc3_RegFile_m (IR, LDREG, clk, rst, DRMUX, SR1MUX, main_bus, SR1OUT, SR2OUT);
-    lc3_cc lc3_cc_m(clk, rst, LDBEN, IR, main_bus, LDCC, BEN);
-    lc3_ControlFSM lc3_ControlFSM_m (IR, R, clk, rst, BEN, main_bus, control_signals);
+    lc3_cc lc3_cc_m(clk, rst, LDBEN, IR, main_bus, LDCC, BEN, PSR);
+    lc3_ControlFSM lc3_ControlFSM_m (IR, R, clk, rst, BEN, PSR, INT, ACV, main_bus, control_signals);
 endmodule

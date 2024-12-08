@@ -47,10 +47,10 @@ module lc3_RegFile (input [15:0] IR,
             regfile[DRMUX_mux] = main_bus;
         end
     end
-    /** Testing test.asm
-    always @(regfile[2]) begin
-        $display("%x", regfile[2]);
+    // Testing test.asm
+    always @(regfile[3]) begin
+        $display("%x", regfile[3]);
     end
-    **/
+    
 
 endmodule
