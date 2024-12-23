@@ -58,6 +58,9 @@ module lc3_ControlFSM ( input [15:0] IR,
         end
     end
 
+
+// verilator lint_off WIDTHEXPAND
     assign control_sgnl = control_signal_ROM[state][24:0];
+// verilator lint_on WIDTHEXPAND
     
 endmodule

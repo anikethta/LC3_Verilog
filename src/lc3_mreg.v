@@ -1,4 +1,4 @@
-`include "lc3_memory.v"
+`include "lc3_Memory.v"
 
 module lc3_mreg(input GateMDR,
                 input LD_MDR,

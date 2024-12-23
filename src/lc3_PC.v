@@ -11,10 +11,10 @@ module lc3_PC ( input [15:0] ADDR,
 
     always @(*) begin
         case (PCMUX) 
-            2'b00 : PCMUX_out <= PC + 1'b1;
-            2'b01 : PCMUX_out <= main_bus;
-            2'b10 : PCMUX_out <= ADDR;
-            default : PCMUX_out <= PC + 1'b1; // Shouldn't happen?
+            2'b00 : PCMUX_out = PC + 1'b1;
+            2'b01 : PCMUX_out = main_bus;
+            2'b10 : PCMUX_out = ADDR;
+            default : PCMUX_out = PC + 1'b1; // Shouldn't happen?
         endcase
     end
 

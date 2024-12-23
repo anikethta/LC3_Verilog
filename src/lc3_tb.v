@@ -14,10 +14,10 @@ module lc3_tb();
 
     initial begin
         $dumpvars(0, DUT);
-        clk <= 1'b0;
-        rst <= 1'b0;
+        clk = 1'b0;
+        rst = 1'b0;
         #10;
-        rst <= 1'b1;
+        rst = 1'b1;
     end
 
 endmodule

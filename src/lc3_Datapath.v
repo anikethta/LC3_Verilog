@@ -57,11 +57,13 @@ module lc3_Datapath (input clk, input rst);
     wire [1:0]    VectorMUX;
     wire          LDVector;
 
+// verilator lint_off WIDTHTRUNC
     assign {LDBEN, LDCC, LDIR, LD_MAR, LD_MDR, LDPC, 
             LDREG, GateALU, GateMARMUX, GateMDR, GatePC, 
             MARMUX, MIO_EN, PCMUX, RW, SR1MUX, DRMUX, 
             ADDR1MUX, ADDR2MUX, ALUK} = control_signals;
-    
+// verilator lint_on WIDTHTRUNC
+
     assign PSR[15] = 1'b1; // running in user mode
     assign INT = 1'b0;
     assign ACV = 1'b0;

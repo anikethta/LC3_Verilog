@@ -14,11 +14,11 @@ module lc3_VECTOR ( inout [15:0] main_bus,
 
     always @(*) begin
         case (VectorMUX)
-            2'b00 : VectorMUX_out <= INTV;
-            2'b01 : VectorMUX_out <= 8'h00;
-            2'b10 : VectorMUX_out <= 8'h01;
-            2'b11 : VectorMUX_out <= 8'h02;
-            default : VectorMUX_out <= 8'h00;
+            2'b00 : VectorMUX_out = INTV;
+            2'b01 : VectorMUX_out = 8'h00;
+            2'b10 : VectorMUX_out = 8'h01;
+            2'b11 : VectorMUX_out = 8'h02;
+            default : VectorMUX_out = 8'h00;
         endcase
     end
 

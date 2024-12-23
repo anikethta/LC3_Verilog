@@ -23,10 +23,10 @@ module lc3_SP ( input [15:0] SR1OUT,
 
     always @(*) begin
         case (SPMUX)
-            2'b00 : SPMUX_OUT <= SavedUSP ; 
-            2'b01 : SPMUX_OUT <= SR1OUT + 1;
-            2'b10 : SPMUX_OUT <= SR1OUT - 1;
-            2'b11 : SPMUX_OUT <= SavedSSP ;
+            2'b00 : SPMUX_OUT = SavedUSP ; 
+            2'b01 : SPMUX_OUT = SR1OUT + 1;
+            2'b10 : SPMUX_OUT = SR1OUT - 1;
+            2'b11 : SPMUX_OUT = SavedSSP ;
         endcase
     end
 
